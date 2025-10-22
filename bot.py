@@ -48,4 +48,5 @@ class bot():
                 if self.board[x][y] == 0 and ((self.board[x+1][y+1] == -self.player or self.board[x+1][y] == -self.player or self.board[x+1][y-1] == -self.player) or (self.board[x][y+1] == -self.player or self.board[x][y-1] == -self.player) or (self.board[x-1][y+1] == -self.player or self.board[x-1][y] == -self.player or self.board[x-1][y-1] == -self.player)):
                     if self.is_pos_inline(x,y,-self.player):
                         for pos in self.player_peice_locations(-self.player):
-                            pass
+                            if self.is_line(x,y,pos[0],pos[1],self.board,-self.player):
+                                pass
