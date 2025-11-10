@@ -78,7 +78,7 @@ class MLP():
             return 1*(a>0) + 0.125*(a<0) #np.array([1.0]*len(a))
 
     def sigmoid(self,x):
-        return 1 / (1 + np.exp(-x))
+        return 1 / (1 + np.exp(-np.array(x, dtype=np.float64)))
     
     def dsigmoid(self,x):
         x = self.sigmoid(x)
@@ -399,10 +399,10 @@ class MLP():
 
             self.velocity_array[i] = self.velocity_array[i]*beta_2 + (1-beta_2)*(change_array**2)
 
-            change = alpha*self.momentum_array[i]/(np.sqrt(self.velocity_array[i]) + 0.00000001)
+            change = alpha*self.momentum_array[i]/(np.sqrt(np.array(self.velocity_array[i], dtype = np.float64)) + 0.00000001)
 
-            self.hidden_layers[i] -= change[::,:self.num_neurons[i]]
-            self.biases[i] -= change[::,self.num_neurons[i]]
+            self.hidden_layers[i] -= np.array(change[::,:self.num_neurons[i]], dtype = np.float64)
+            self.biases[i] -= np.array(change[::,self.num_neurons[i]], dtype = np.float64)
 
             derivative_vector = new_derivative_vector
 
